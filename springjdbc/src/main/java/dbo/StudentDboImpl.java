@@ -2,6 +2,7 @@ package dbo;
 
 import entities.Student;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 public class StudentDboImpl implements StudentDao{
 
@@ -26,6 +27,14 @@ public class StudentDboImpl implements StudentDao{
         int r = this.jdbcTemplate.update(query, studentId);
         return r;
 
+    }
+
+    @Override
+    public Student getStudent(int studentId) {
+        String query = "select * from student where id=?";
+        RowMapper<Student> rowMapper = new RowMapperImpl();
+        Student student = this.jdbcTemplate.queryForObject(query, rowMapper, studentId);
+        return student;
     }
 
 

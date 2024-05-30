@@ -36,10 +36,16 @@ public class Main {
 
         int rest = sd.change(student);
         System.out.println("data changed: " + rest);
-        */
+
 
         //delete
         int result = sd.delete(3);
         System.out.println("deleted: " + result);
+
+         */
+
+        //select
+        Student student = sd.getStudent(1);
+        System.out.println(student);
     }
 }
