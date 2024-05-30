@@ -4,6 +4,7 @@ import dbo.StudentDao;
 import dbo.StudentDboImpl;
 import entities.Student;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -12,8 +13,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         System.out.println("start....");
-        ApplicationContext context = new ClassPathXmlApplicationContext("org/example/jdbc.xml");
-
+        //(uncomment to run with xml file)ApplicationContext context = new ClassPathXmlApplicationContext("org/example/jdbc.xml");
+        ApplicationContext context = new AnnotationConfigApplicationContext(JdbcCon.class);
         JdbcTemplate temp = context.getBean("jdbcTemplate", JdbcTemplate.class);
         StudentDao sd = new StudentDboImpl(temp);
         /*
@@ -21,9 +22,9 @@ public class Main {
         int r = temp.update(query,2,"xyz", "kanpur"); //inserting values
         System.out.println("num of rows inserted: " + r);
         */
-        StudentDao sdo = context.getBean("sdi", StudentDao.class);
+        StudentDao sdo = context.getBean("studentDao", StudentDao.class);
 
-        /*
+
         //insert
         Student student = new Student();
         student.setId(3);
@@ -33,7 +34,7 @@ public class Main {
 
         int result = sd.insert(student);
         System.out.println("student added: " + result);
-
+        /*
         //update
         Student student = new Student();
         student.setId(3);
@@ -54,13 +55,15 @@ public class Main {
         Student student = sd.getStudent(1);
         System.out.println(student);
 
-         */
+
 
         List<Student> students = sd.getAllStudents();
         for(Student s:students)
         {
             System.out.println(s);
         }
+
+         */
     }
 
 }

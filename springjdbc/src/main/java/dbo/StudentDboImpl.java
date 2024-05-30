@@ -13,6 +13,11 @@ public class StudentDboImpl implements StudentDao{
     public StudentDboImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    public StudentDboImpl() {
+
+    }
+
     @Override
     //insert
     public int insert(Student student) {
