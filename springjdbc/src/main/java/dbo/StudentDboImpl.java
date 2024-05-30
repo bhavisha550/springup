@@ -1,13 +1,15 @@
 package dbo;
 
 import entities.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component("studentDao")
 public class StudentDboImpl implements StudentDao{
-
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     public StudentDboImpl(JdbcTemplate jdbcTemplate) {
@@ -64,7 +66,7 @@ public class StudentDboImpl implements StudentDao{
     public JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;
     }
-
+    @Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }

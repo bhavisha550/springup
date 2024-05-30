@@ -24,7 +24,7 @@ public class Main {
         */
         StudentDao sdo = context.getBean("studentDao", StudentDao.class);
 
-
+        /*
         //insert
         Student student = new Student();
         student.setId(3);
@@ -48,7 +48,7 @@ public class Main {
         //delete
         int result = sd.delete(3);
         System.out.println("deleted: " + result);
-
+        */
 
 
         //select
@@ -63,7 +63,7 @@ public class Main {
             System.out.println(s);
         }
 
-         */
+
     }
 
 }
