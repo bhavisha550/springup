@@ -1,21 +1,27 @@
 package org.example;
 
 import dbo.StudentDao;
+import dbo.StudentDboImpl;
 import entities.Student;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("start....");
-        ApplicationContext context = new ClassPathXmlApplicationContext("dbo/jdbc.xml");
-        /*JdbcTemplate temp = context.getBean("jdbcTemplate", JdbcTemplate.class);
+        ApplicationContext context = new ClassPathXmlApplicationContext("org/example/jdbc.xml");
 
+        JdbcTemplate temp = context.getBean("jdbcTemplate", JdbcTemplate.class);
+        StudentDao sd = new StudentDboImpl(temp);
+        /*
         String query = "insert into student(id, name, city) values(?, ?, ?)"; //inserting queryy
         int r = temp.update(query,2,"xyz", "kanpur"); //inserting values
         System.out.println("num of rows inserted: " + r);
         */
-        StudentDao sd = context.getBean("sdi", StudentDao.class);
+        StudentDao sdo = context.getBean("sdi", StudentDao.class);
 
         /*
         //insert
@@ -42,10 +48,19 @@ public class Main {
         int result = sd.delete(3);
         System.out.println("deleted: " + result);
 
-         */
+
 
         //select
         Student student = sd.getStudent(1);
         System.out.println(student);
+
+         */
+
+        List<Student> students = sd.getAllStudents();
+        for(Student s:students)
+        {
+            System.out.println(s);
+        }
     }
+
 }
